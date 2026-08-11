@@ -102,6 +102,10 @@ button{display:none}
 }
 
 </style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap');
+body{overflow-x:hidden;background:radial-gradient(circle at 9% 12%,#ffe477 0 42px,transparent 43px),radial-gradient(circle at 91% 18%,#b9e6ee 0 58px,transparent 59px),#fff8e8;color:#293c3b;font-family:"Space Grotesk",system-ui,sans-serif}.card{max-width:760px;padding:36px 18px}.eyebrow{color:#293c3b;font:10px "DM Mono",monospace;letter-spacing:.09em}.title-wrap{width:100%;margin-bottom:18px;overflow:visible;justify-content:center}h1{white-space:normal;animation:none;font-family:Fraunces,Georgia,serif;font-size:clamp(3rem,8vw,5.8rem);letter-spacing:-.06em}.subtext,.tiny{font-family:Fraunces,Georgia,serif;color:#69746d}.coin{border-color:#293c3b;background:radial-gradient(circle at 33% 25%,#fff 0 7%,#eef0f1 17%,#aeb4b8 48%,#f8fafb 68%,#737a80 100%);color:#50575d;box-shadow:inset 0 0 0 4px #f7f8f8,inset 0 0 0 9px #727981,inset 0 0 16px rgba(40,46,51,.38),6px 8px 0 rgba(41,60,59,.24)}.coin::before{border-color:rgba(62,69,75,.65)}@keyframes flip{0%{transform:rotateY(0) translateY(0)}35%{transform:rotateY(900deg) translateY(-42px) scale(1.08)}72%{transform:rotateY(1800deg) translateY(-12px) scale(.96)}100%{transform:rotateY(2520deg) translateY(0)}}.odds{color:#293c3b;font:10px "DM Mono",monospace}.salene-home-link{font-family:"DM Mono",monospace}
+</style>
 </head>
 <body>
 <main class="card">
@@ -122,7 +126,7 @@ button{display:none}
 </section>
 
 <div class="odds">99% NO &nbsp; | &nbsp; 1% YES</div>
-<div class="tiny">Results are scientifically questionable. 😉</div>
+<div class="tiny">Results are scientifically questionable.</div>
 <a class="salene-home-link" href="https://saleney.github.io/">← back to Salene’s Corner</a>
 </main>
 
@@ -179,7 +183,14 @@ function getResult() {
   return yes;
 }
 
+function playDramaticSting(){
+  const audio=new (window.AudioContext||window.webkitAudioContext)();
+  const notes=[196,233,294,392];
+  notes.forEach((freq,index)=>{const osc=audio.createOscillator(),gain=audio.createGain();osc.type=index===3?'triangle':'sine';osc.frequency.setValueAtTime(freq,audio.currentTime+index*.08);gain.gain.setValueAtTime(.0001,audio.currentTime+index*.08);gain.gain.exponentialRampToValueAtTime(.07,audio.currentTime+index*.08+.02);gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+1.05);osc.connect(gain).connect(audio.destination);osc.start(audio.currentTime+index*.08);osc.stop(audio.currentTime+1.1)});
+}
+
 function flipCoin(){
+  playDramaticSting();
   coin.style.pointerEvents="none";
   answer.textContent="";
   message.textContent="";
