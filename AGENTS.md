@@ -34,3 +34,14 @@ This project is a tiny interactive decision toy whose charm comes from simplicit
 - Do not refactor the whole single-file project merely for architectural neatness unless explicitly requested.
 - Preserve unrelated behavior and styling.
 - Keep agent work concise and token-efficient.
+
+## Required session start
+
+Before modifying this project:
+
+1. Read this `AGENTS.md` file completely.
+2. Read the master creative constitution: https://github.com/saleney/saleney.github.io/blob/main/DESIGN.md
+3. Briefly confirm which instruction files you read.
+4. Inspect the existing implementation before proposing or making changes.
+
+Treat `AGENTS.md` as the operational instructions and the master `DESIGN.md` as the creative constitution. If either required file is unavailable, stop and tell Salene before modifying anything.
